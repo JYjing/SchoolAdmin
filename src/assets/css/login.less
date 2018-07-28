@@ -1,0 +1,175 @@
+@bodybgcolor:#435970;
+@btnColor:#318ac1;
+@inputColor:#6f7e8c;
+
+body,
+html{
+  height: 100%;
+  width: 100%;
+  background-color: @bodybgcolor;
+}
+h1,
+h2,
+h3,
+h4,
+{
+  user-select: none;
+}
+button{
+    background-color: @btnColor;
+    color: #ffffff;
+    border: none;
+}
+input{
+    background-color: @inputColor;
+    color: #ffffff;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    padding-left: 10px;
+}
+
+#app {
+  height: 100%;
+  width: 100%;
+  min-height: 950px;
+  min-width: 1000px;
+}
+
+::-webkit-input-placeholder {
+  /* WebKit, Blink, Edge */
+  color: #ffffff;
+  font-size: 15px;
+}
+
+:-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  color: #ffffff;
+  font-size: 15px;
+}
+
+::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  color: #ffffff;
+  font-size: 15px;
+}
+
+:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: #ffffff;
+  font-size: 15px;
+}
+
+.login {
+  height: 100%;
+}
+
+.login-box {
+  text-align: center;
+  width: 350px;
+  margin: 80px auto;
+}
+
+.login-box h1 {
+  font-size: 80px;
+  color: #ffffff;
+}
+
+.login-box > h2 {
+  color: #ffffff;
+}
+
+.login-box input {
+  width: 350px;
+  height: 40px;
+  margin-top: 15px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  font-size: 20px;
+  position: relative;
+  top: 50px;
+  -webkit-opacity: 0;
+  -moz-opacity: 0;
+  -ms-opacity: 0;
+  -o-opacity: 0;
+  opacity: 0;
+}
+
+.login-box input:nth-child(4) {
+  -webkit-animation: loginFrame 1s;
+  -moz-animation: loginFrame 1s;
+  -ms-animation: loginFrame 1s;
+  -o-animation: loginFrame 1s;
+  animation: loginFrame 1s;
+  -webkit-animation-fill-mode: forwards;
+  -moz-animation-fill-mode: forwards;
+  -ms-animation-fill-mode: forwards;
+  -o-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+}
+
+.login-box input:nth-child(5) {
+  -webkit-animation: loginFrame 1s;
+  -moz-animation: loginFrame 1s;
+  -ms-animation: loginFrame 1s;
+  -o-animation: loginFrame 1s;
+  animation: loginFrame 1s;
+  -webkit-animation-delay: 0.3s;
+  -moz-animation-delay: 0.3s;
+  -ms-animation-delay: 0.3s;
+  -o-animation-delay: 0.3s;
+  animation-delay: 0.3s;
+  -webkit-animation-fill-mode: forwards;
+  -moz-animation-fill-mode: forwards;
+  -ms-animation-fill-mode: forwards;
+  -o-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+}
+
+.login-box button {
+  width: 350px;
+  height: 40px;
+  margin-top: 15px;
+  font-size: 20px;
+  position: relative;
+  -webkit-animation: loginFrame 1s;
+  -moz-animation: loginFrame 1s;
+  -ms-animation: loginFrame 1s;
+  -o-animation: loginFrame 1s;
+  animation: loginFrame 1s;
+  -webkit-animation-delay: 0.6s;
+  -moz-animation-delay: 0.6s;
+  -ms-animation-delay: 0.6s;
+  -o-animation-delay: 0.6s;
+  animation-delay: 0.6s;
+  -webkit-animation-fill-mode: forwards;
+  -moz-animation-fill-mode: forwards;
+  -ms-animation-fill-mode: forwards;
+  -o-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+  top: 50px;
+  -webkit-opacity: 0;
+  -moz-opacity: 0;
+  -ms-opacity: 0;
+  -o-opacity: 0;
+  opacity: 0;
+}
+
+@keyframes loginFrame {
+    from{opacity: 0;top: 50px}
+    to{opacity: 1; top: 0px;}
+}
+@-moz-keyframes loginFrame {
+    from{opacity: 0;top: 50px}
+    to{opacity: 1; top: 0px;}
+}
+@-webkit-keyframes loginFrame {
+    from{opacity: 0;top: 50px}
+    to{opacity: 1; top: 0px;}
+}
+@-o-keyframes loginFrame {
+    from{opacity: 0;top: 50px}
+    to{opacity: 1; top: 0px;}
+}

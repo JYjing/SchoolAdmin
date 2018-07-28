@@ -1,0 +1,65 @@
+.navi-top {
+  position: absolute;
+  width: 100%;
+  height: 60px;
+  background-color: #526C87;
+  top: 0px;
+  left: 0px;
+  min-width: 1000px;
+}
+#n-top {
+  position: relative;
+  vertical-align: middle;
+  transition: all .5s;
+  width: 100px;
+  line-height: 53px;
+  text-align: center;
+  /* height: 30px; */
+}
+#n-top a {
+  font-size: 14px;
+  color: #ffffff;
+}
+#n-top:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+.nav-flex span {
+  background-color: #526C87;
+  color: #ffffff;
+  font-size: 18px;
+  user-select: none;
+  cursor: pointer;
+  line-height: 50px;
+}
+.nav-flex > .nav-data {
+  margin: 0 5px;
+  font-size: 14px;
+}
+.nav-flex {
+  width: 300px;
+  display: flex;
+  margin-right: 10px;
+  justify-content: space-around;
+}
+.navi-top {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.nav-admin {
+  text-align: center;
+}
+.nav-admin-flex {
+  display: flex;
+}
+@media screen and (max-width: 1250px) {
+  .display-n {
+    display: none;
+  }
+  .nav-flex {
+    width: 150px;
+  }
+  .dropdown > .dropdown-menu {
+    left: -65px;
+  }
+}

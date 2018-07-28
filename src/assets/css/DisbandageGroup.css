@@ -1,0 +1,35 @@
+.disban-main {
+  width: 100%;
+  display: flex;
+}
+.d-main {
+  width: 100%;
+  margin-right: 20px;
+  margin-top: 70px;
+  margin-left: 20px;
+  margin-bottom: 20px;
+  padding: 20px;
+  background-color: #526C87;
+}
+.d-main > label {
+  color: #fff;
+  margin-left: 10px;
+}
+.d-main > hr {
+  width: 100%;
+  margin: 50px auto;
+  border: 0;
+  height: 2px;
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(255, 255, 255, 0.664), rgba(0, 0, 0, 0));
+}
+#stuGroup {
+  width: 250px;
+  height: 30px;
+  padding-left: 90px;
+  margin: 0 20px;
+}
+.d-main > button {
+  width: 250px;
+  height: 30px;
+  margin-right: 20px;
+}

@@ -1,0 +1,52 @@
+.kick-main {
+  width: 100%;
+  margin-top: 50px;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+table {
+  color: #fff;
+}
+table tr:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+table tr {
+  transition: all .5s;
+}
+.kick-input-search > button {
+  background-color: #318ac1;
+  border: none;
+}
+.btnCount {
+  margin-top: -15px;
+  margin-right: 100px;
+  float: right;
+}
+.kick-search > div {
+  background-color: #526c87;
+  padding: 20px;
+}
+.kick-table::after {
+  display: block;
+  content: "";
+  clear: both;
+}
+.kick-table {
+  margin-top: 10px;
+}
+.kick-input-search {
+  margin-top: 20px;
+  color: #fff;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.kick-input-search input {
+  background-color: #fff;
+  width: 250px;
+  height: 30px;
+}
+.kick-input-search button {
+  width: 300px;
+  height: 30px;
+}
