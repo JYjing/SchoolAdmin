@@ -2,10 +2,10 @@
     <div class="kick-main">
            <div class="kick-search">
                 <div class="kick-input-search">
-                    编号：<input @blur="blurColor" @focus="focusColor" type="text">
-                    班级：<input @blur="blurColor" @focus="focusColor" type="text">
-                    等级：<input @blur="blurColor" @focus="focusColor" type="text">
-                    姓名：<input @blur="blurColor" @focus="focusColor" type="text">
+                        编号<input @blur="blurColor" @focus="focusColor" type="text">
+                        班级<input @blur="blurColor" @focus="focusColor" type="text">
+                        等级<input @blur="blurColor" @focus="focusColor" type="text">
+                        姓名<input @blur="blurColor" @focus="focusColor" type="text">
                     <button class="btn btn-info">搜索</button>
                 </div>
                 <div class="kick-table">
@@ -127,7 +127,7 @@ export default {
         return{
             index:0,
             pageCount:10,
-            pno:2,
+            pno:1,
             stu:[
                 {sid:"01",sname:"王小妹1",grop:"第一组",Lv:"1",class:"软件171"},
                 {sid:"02",sname:"王小妹2",grop:"第一组",Lv:"1",class:"软件171"},
@@ -139,9 +139,6 @@ export default {
                 {sid:"08",sname:"王小妹8",grop:"第一组",Lv:"1",class:"软件171"},
                 {sid:"09",sname:"王小妹9",grop:"第一组",Lv:"1",class:"软件171"},
                 {sid:"10",sname:"王小妹10",grop:"第一组",Lv:"1",class:"软件171"},
-                {sid:"11",sname:"王小妹10",grop:"第一组",Lv:"1",class:"软件171"},
-                {sid:"12",sname:"王小妹10",grop:"第一组",Lv:"1",class:"软件171"},
-                {sid:"13",sname:"王小妹10",grop:"第一组",Lv:"1",class:"软件171"},
             ]
         }
     },

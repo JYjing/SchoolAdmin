@@ -3,6 +3,7 @@
   margin-top: 50px;
   margin-left: 20px;
   margin-right: 20px;
+  min-width: 1000px;
 }
 table {
   color: #fff;
@@ -45,6 +46,8 @@ table tr {
   background-color: #fff;
   width: 250px;
   height: 30px;
+  flex: 0 1 auto;
+  margin: 0 20px;
 }
 .kick-input-search button {
   width: 300px;
