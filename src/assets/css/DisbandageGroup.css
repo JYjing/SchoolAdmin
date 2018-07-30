@@ -10,8 +10,9 @@
   margin-bottom: 20px;
   padding: 20px;
   background-color: #526C87;
+  min-width: 1000px;
 }
-.d-main > label {
+.dmain-flex > label {
   color: #fff;
   margin-left: 10px;
 }
@@ -22,14 +23,19 @@
   height: 2px;
   background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(255, 255, 255, 0.664), rgba(0, 0, 0, 0));
 }
-#stuGroup {
+.dmain-flex {
+  display: flex;
+  align-items: center;
+}
+.dmain-flex > select {
   width: 250px;
   height: 30px;
-  padding-left: 90px;
+  padding-left: 10px;
   margin: 0 20px;
 }
-.d-main > button {
+.dmain-flex > button {
   width: 250px;
   height: 30px;
   margin-right: 20px;
+  line-height: 1.2;
 }

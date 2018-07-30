@@ -7,26 +7,27 @@
 	            <li class="nav-item">
 	                <a href="javascript:;"><i class="my-icon nav-icon icon_1"></i><span>学生管理</span><i class="my-icon nav-more"></i></a>
 	                <ul>
-                      <li><router-link to="/kicking"><span>所有学生</span></router-link></li>
+                      <li><router-link to="/admstudent"><span>所有学生</span></router-link></li>
 	                </ul>
 	            </li>
 	            <li class="nav-item">
 	                <a href="javascript:;"><i class="my-icon nav-icon icon_2"></i><span>小组管理</span><i class="my-icon nav-more"></i></a>
 	                <ul>
-	                    <li><router-link to="/disban"><span>所有小组</span></router-link></li>
+	                    <li><router-link to="/admgroup"><span>所有小组</span></router-link></li>
 	                </ul>
 	            </li>
 	            <li class="nav-item">
 	                <a href="javascript:;"><i class="my-icon nav-icon icon_3"></i><span>视频资源</span><i class="my-icon nav-more"></i></a>
 	                <ul>
-	                    <li><router-link to="/download"><span>视频管理</span></router-link></li>
+	                    <li><router-link to="/uplvideo"><span>视频上传</span></router-link></li>
+	                    <li><router-link to="/admvideo"><span>视频管理</span></router-link></li>
 	                </ul>
 	            </li>
                 <li class="nav-item">
 	                <a href="javascript:;"><i class="my-icon nav-icon icon_3"></i><span>班级管理</span><i class="my-icon nav-more"></i></a>
 	                <ul>
-	                    <li><router-link to="/dissltn"><span>所有班级</span></router-link></li>
-	                    <li><router-link to="/dissltn"><span>创建班级</span></router-link></li>
+	                    <li><router-link to="/admclass"><span>所有班级</span></router-link></li>
+	                    <!-- <li><router-link to="/dissltn"><span>创建班级</span></router-link></li> -->
 	                </ul>
 	            </li>
 	          </ul>

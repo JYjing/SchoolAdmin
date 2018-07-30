@@ -2,10 +2,11 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Login from "./views/Login.vue"
 import Main from "./views/Main.vue"
-import KickingStudent from "./views/KickingStudent.vue"
-import DisbandageGroup from "./views/DisbandageGroup.vue"
-import DissolutionClass from "./views/DissolutionClass.vue"
-import DownloadJob from "./views/DownloadJob.vue"
+import AdminStudent from "./views/AdminStudent.vue"
+import AdminGroup from "./views/AdminGroup.vue"
+import AdminClass from "./views/AdminClass.vue"
+import UploadVideo from "./views/UploadVideo.vue"
+import AdminVideo from "./views/AdminVideo.vue"
 
 Vue.use(Router)
 
@@ -25,23 +26,27 @@ export default new Router({
       children:[
         {
           path:'/',
-          component:KickingStudent
+          component:AdminStudent
         },
         {
-          path:'/kicking',
-          component:KickingStudent
+          path:'/admstudent',
+          component:AdminStudent
         },
         {
-          path:'/disban',
-          component:DisbandageGroup,
+          path:'/admgroup',
+          component:AdminGroup,
         },
         {
-          path:'/dissltn',
-          component:DissolutionClass,
+          path:'/admclass',
+          component:AdminClass,
         },
         {
-          path:'/download',
-          component:DownloadJob,
+          path:'/uplvideo',
+          component:UploadVideo,
+        },
+        {
+          path:'/admvideo',
+          component:AdminVideo,
         },
       ]
     }

@@ -1,6 +1,6 @@
 <template>
     <div>
-        DownloadJob
+        adminjob
     </div>
 </template>
 <script>

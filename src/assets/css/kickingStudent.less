@@ -1,12 +1,19 @@
+@bgColor:#526C87;
+@color:#fff;
+@mianMinWidth:1000px;
+
+
 .kick-main{
     width: 100%;
     margin-top: 50px;
     margin-left: 20px;
     margin-right: 20px;
+    min-width: @mianMinWidth;
+    // overflow: hidden;
 }  
 //526C87 
 table{
-    color: #fff;
+    color: @color;
 }
 table tr:hover{
     // line-height: 20px;
@@ -25,7 +32,7 @@ table tr{
     float: right;
 }
 .kick-search>div{
-    background-color: #526c87;
+    background-color: @bgColor;
     padding: 20px;
 }
 .kick-table::after{
@@ -40,13 +47,13 @@ table tr{
     // height: 200px;;
     // min-width: 1010px;
     margin-top: 20px; 
-    color: #fff;
+    color: @color;
     display: flex;
     justify-content: space-around;
     align-items: center;
 }
 .kick-input-search input{
-    background-color: #fff;
+    background-color:@color;
     width:250px;
     height: 30px;
     flex: 0 1 auto;
