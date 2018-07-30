@@ -64,7 +64,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                            <button class="btn btn-info">确定踢出</button>
+                            <button class="btn btn-danger">确定踢出</button>
                         </div>
                    </div>
                </div>
@@ -110,7 +110,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                            <button class="btn btn-info">撤销学委</button>
+                            <button class="btn btn-warning">撤销学委</button>
                         </div>
                    </div>
                </div>

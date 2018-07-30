@@ -17,6 +17,7 @@
                     <option value="">第四组</option>
                 </select>
                 <button class="btn btn-info">查看小组成员</button>
+                <button class="btn btn-info">查看小组密匙</button>
                 <button class="btn btn-danger" data-toggle="modal" data-target="#deleGroup">删除小组</button>
            </div>
             <hr>
