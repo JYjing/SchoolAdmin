@@ -1,8 +1,5 @@
 .disban-main {
-  width: 100%;
   display: flex;
-}
-.d-main {
   width: 100%;
   margin-right: 20px;
   margin-top: 70px;
@@ -11,6 +8,9 @@
   padding: 20px;
   background-color: #526C87;
   min-width: 1000px;
+}
+.d-main {
+  width: 100%;
 }
 .dmain-flex > label {
   color: #fff;

@@ -35,7 +35,7 @@
                             </tr>
                         </tbody>
                     </table>
-                    <div class="btn-group btnCount" role="group" aria-label="...">
+                    <div class="btn-group btnCount" role="group">
                         <button v-if="pno-1>0" type="button" class="btn btn-info">上一页</button>
                         <button v-if="pno-2>0" type="button" class="btn btn-info">{{pno-2}}</button>
                         <button v-if="pno-1>0" type="button" class="btn btn-info">{{pno-1}}</button>
@@ -118,7 +118,7 @@
     </div>
 </template>
 <script>
-import "../assets/css/kickingStudent.css";
+import "../assets/css/AdminStudent.css";
 import "../assets/css/bootstrap.css";
 import "../apiFilter/myFilter.js"
 

@@ -12,7 +12,7 @@
                         <li role="separator" class="divider"></li>
                         <li><a href="#">问题反馈</a></li>
                         <li role="separator" class="divider"></li>
-                        <li><a href="#">退出登录</a></li>
+                        <li><router-link class="display-n" to="/login">退出登录</router-link></li>
                     </ul>
                 </li>
             </ul>    

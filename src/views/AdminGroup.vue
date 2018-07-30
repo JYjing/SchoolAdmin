@@ -111,7 +111,7 @@
     </div>
 </template>
 <script>
-    import "../assets/css/DisbandageGroup.css"
+    import "../assets/css/AdminGroup.css"
     import "../assets/css/bootstrap.css"
     import "../apiFilter/myFilter.js"
 

@@ -1,0 +1,37 @@
+.admvideo-main {
+  width: 100%;
+  min-width: 1000px;
+  margin-right: 20px;
+  margin-top: 70px;
+  margin-left: 20px;
+  margin-bottom: 20px;
+  padding: 20px;
+}
+.result-font {
+  font-size: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.admvideo-main > div {
+  background-color: #526C87;
+}
+.video-search > span {
+  color: #fff;
+}
+.video-search {
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 50px;
+}
+.video-search > select {
+  width: 200px;
+  height: 30px;
+  margin: 0 10px;
+}
+.video-search > button {
+  width: 200px;
+  margin: 0 20px;
+}
