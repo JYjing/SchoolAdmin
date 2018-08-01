@@ -1,0 +1,32 @@
+.downwork-main {
+  width: 100%;
+  min-width: 1000px;
+  margin-right: 20px;
+  margin-top: 70px;
+  margin-left: 20px;
+  margin-bottom: 20px;
+  padding: 20px;
+}
+.down-flex {
+  padding: 30px;
+  display: flex;
+  align-items: center;
+  background-color: #526C87;
+  margin-bottom: 20px;
+}
+.down-flex > select {
+  width: 200px;
+  height: 40px;
+  border-radius: 5px;
+  margin-right: 40px;
+}
+.down-flex > button {
+  width: 200px;
+  height: 40px;
+}
+.downwork-main > h3 {
+  color: #fff;
+}
+.down-table {
+  background-color: #526C87;
+}

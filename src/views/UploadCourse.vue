@@ -33,7 +33,7 @@
 </template>
 <script>
     import "../assets/css/bootstrap.css"
-    import "../assets/css/UploadVideo.css"
+    import "../assets/css/UploadCourse.css"
 
 
     export default {

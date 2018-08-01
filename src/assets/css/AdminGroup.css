@@ -32,6 +32,7 @@
   height: 30px;
   padding-left: 10px;
   margin: 0 20px;
+  border-radius: 5px;
 }
 .dmain-flex > button {
   width: 250px;

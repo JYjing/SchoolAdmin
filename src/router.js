@@ -5,9 +5,10 @@ import Main from "./views/Main.vue"
 import AdminStudent from "./views/AdminStudent.vue"
 import AdminGroup from "./views/AdminGroup.vue"
 import AdminClass from "./views/AdminClass.vue"
-import UploadVideo from "./views/UploadVideo.vue"
-import AdminVideo from "./views/AdminVideo.vue"
+import UploadCourse from "./views/UploadCourse.vue"
+import AdminCourse from "./views/AdminCourse.vue"
 import CreateClass from "./views/CreateClass.vue"
+import DownWork from "./views/DownWork.vue"
 
 Vue.use(Router)
 
@@ -42,16 +43,20 @@ export default new Router({
           component:AdminClass,
         },
         {
-          path:'/uplvideo',
-          component:UploadVideo,
+          path:'/uplcourse',
+          component:UploadCourse,
         },
         {
-          path:'/admvideo',
-          component:AdminVideo,
+          path:'/admcourse',
+          component:AdminCourse,
         },
         {
           path:'/creclass',
           component:CreateClass,
+        },
+        {
+          path:'/down',
+          component:DownWork,
         },
 
       ]

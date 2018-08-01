@@ -17,7 +17,7 @@
                     <option value="">第四组</option>
                 </select>
                 <button class="btn btn-info">查看小组成员</button>
-                <button class="btn btn-info">查看小组密匙</button>
+                <button class="btn btn-info" data-toggle="modal" data-target="#seeGrouppwd">查看小组密匙</button>
                 <button class="btn btn-danger" data-toggle="modal" data-target="#deleGroup">删除小组</button>
            </div>
             <hr>
@@ -54,7 +54,7 @@
                 <button v-if="pno+1<=pageCount" type="button" class="btn btn-info">下一页</button>
             </div>
 
-            <!-- 查看密匙模态框 -->
+            <!-- 查看个人密匙模态框 -->
             <div class="modal fade" id="stuPwd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                <div class="modal-dialog" role="document">
                    <div class="modal-content">
@@ -106,7 +106,24 @@
                    </div>
                </div>
             </div>
-       
+            <!-- 查看小组密匙模态框 -->
+            <div class="modal fade" id="seeGrouppwd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+               <div class="modal-dialog" role="document">
+                   <div class="modal-content">
+                       <div class="modal-header">
+                         <h3 class="modal-title" id="myModalLabel">查看密匙</h3>
+                        </div>
+                        <div class="modal-body">
+                            <h3>第三组</h3>
+                            <hr>
+                            <p>密码：<input disabled="disabled" type="text" :value="stu[index].pwd"></p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                        </div>
+                   </div>
+               </div>
+            </div>
        
         </div>
     </div>

@@ -127,7 +127,7 @@
 </template>
 <script>
     import "../assets/css/bootstrap.css"
-    import "../assets/css/AdminVideo.css"
+    import "../assets/css/AdminCourse.css"
 
     export default {
         data(){

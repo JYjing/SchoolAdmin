@@ -11,5 +11,14 @@
   width: 100%;
 }
 .creclass-main > h3 {
+  font-size: 24px;
   color: #fff;
+}
+.creclass-main > p {
+  font-size: 21px;
+  margin-top: 20px;
+}
+.creclass-main > input {
+  width: 350px;
+  height: 40px;
 }
