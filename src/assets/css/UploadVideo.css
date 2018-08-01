@@ -16,6 +16,7 @@ p {
   width: 200px;
   height: 30px;
   margin-bottom: 20px;
+  border-radius: 5px;
 }
 .uplvideo-mian > input {
   width: 500px;
@@ -37,4 +38,7 @@ p {
 .uplvideo-mian button {
   width: 150px;
   margin-left: 350px;
+}
+.uplvideo-mian h3 {
+  color: #fff;
 }

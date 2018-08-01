@@ -6,5 +6,6 @@ module.exports={
                 use:'file-loader'
             }]
         }
-    }
+    },
+    baseUrl: './',
 }

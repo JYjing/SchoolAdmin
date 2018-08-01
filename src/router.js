@@ -7,6 +7,7 @@ import AdminGroup from "./views/AdminGroup.vue"
 import AdminClass from "./views/AdminClass.vue"
 import UploadVideo from "./views/UploadVideo.vue"
 import AdminVideo from "./views/AdminVideo.vue"
+import CreateClass from "./views/CreateClass.vue"
 
 Vue.use(Router)
 
@@ -48,6 +49,11 @@ export default new Router({
           path:'/admvideo',
           component:AdminVideo,
         },
+        {
+          path:'/creclass',
+          component:CreateClass,
+        },
+
       ]
     }
   ]

@@ -17,17 +17,18 @@
 	                </ul>
 	            </li>
 	            <li class="nav-item">
-	                <a href="javascript:;"><i class="my-icon nav-icon icon_3"></i><span>视频资源</span><i class="my-icon nav-more"></i></a>
+	                <a href="javascript:;"><i class="my-icon nav-icon icon_3"></i><span>课程资源</span><i class="my-icon nav-more"></i></a>
 	                <ul>
-	                    <li><router-link to="/uplvideo"><span>视频上传</span></router-link></li>
-	                    <li><router-link to="/admvideo"><span>视频管理</span></router-link></li>
+	                    <li><router-link to="/uplvideo"><span>课程上传</span></router-link></li>
+	                    <li><router-link to="/admvideo"><span>课程管理</span></router-link></li>
+	                    <li><router-link to="/admvideo"><span>作业下载</span></router-link></li>
 	                </ul>
 	            </li>
                 <li class="nav-item">
 	                <a href="javascript:;"><i class="my-icon nav-icon icon_3"></i><span>班级管理</span><i class="my-icon nav-more"></i></a>
 	                <ul>
 	                    <li><router-link to="/admclass"><span>所有班级</span></router-link></li>
-	                    <!-- <li><router-link to="/dissltn"><span>创建班级</span></router-link></li> -->
+	                    <li><router-link to="/creclass"><span>创建班级</span></router-link></li>
 	                </ul>
 	            </li>
 	          </ul>
