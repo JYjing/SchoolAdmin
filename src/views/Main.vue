@@ -11,7 +11,7 @@
     import "../assets/css/bootstrap.css"
     import "../assets/css/nav.css"
     import '../assets/fonts/iconfont.css'
-    import '../assets/js/jquery-1.11.0.min.js'
+    import "../assets/js/jquery-3.2.1.js"
     import MainNav from "../components/Nav.vue";
     import NavTop from "../components/NavTop.vue"
 
@@ -19,9 +19,6 @@
         components:{
             MainNav,
             NavTop
-        },
-        mounted() {
-
         },
     }
 </script>

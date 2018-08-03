@@ -43,7 +43,8 @@
 <script>
     import "../assets/css/bootstrap.css"
     import '../assets/js/bootstrap.js'
-    import '../assets/js/jquery-1.11.0.min.js'
+    import "../assets/js/jquery-1.11.3.js"
+    import "../assets/js/jquery-3.2.1.js"
     import '../assets/css/NavTop.css'
 
     export default {

@@ -37,7 +37,8 @@
 <script>
 import "../assets/css/nav.css";
 import "../assets/fonts/iconfont.css";
-import "../assets/js/jquery-1.11.0.min.js";
+import "../assets/js/jquery-3.2.1.js"
+import "../assets/js/jquery-1.11.3.js"
 
 export default {
   data() {
