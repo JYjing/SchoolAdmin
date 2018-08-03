@@ -3,20 +3,14 @@
         <div class="d-main">
            <div class="dmain-flex">
                 <label for="stuClass">班级</label>
-                <select disabled="disabled" name="sGroup" id="stuClass">
-                    <option value="">软件171</option>
-                    <option value="">软件171</option>
-                    <option value="">软件171</option>
-                    <option value="">软件171</option>
+                <select @change="groupChange()" id="stuClass">
+                    <option  v-for="(item, index) in cName" :key="index" :value="item.name">{{item.name}}</option>
                 </select>
                 <label for="stuGroup">小组</label>
-                <select name="sGroup" id="stuGroup">
-                    <option value="">第一组</option>
-                    <option value="">第二组</option>
-                    <option value="">第三组</option>
-                    <option value="">第四组</option>
+                <select id="stuGroup">
+                    <option v-for="(item, index) in group" :key="index" :value="item.name">{{item.name}}</option>
                 </select>
-                <button class="btn btn-info">查看小组成员</button>
+                <button class="btn btn-info" @click.prevent="LoadGroup(1)" >查看小组成员</button>
                 <button class="btn btn-info" data-toggle="modal" data-target="#seeGrouppwd">查看小组密匙</button>
                 <button class="btn btn-danger" data-toggle="modal" data-target="#deleGroup">删除小组</button>
            </div>
@@ -27,16 +21,18 @@
                         <th>编号</th>
                         <th>姓名</th>
                         <th>班级</th>
+                        <th>小组</th>
                         <th>等级</th>
                         <th>操作</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr v-for="(item, i) in stu" :key="i">
-                        <td>{{item.sid}}</td>
-                        <td>{{item.sname}}</td>
-                        <td>{{item.class}}</td>
-                        <td>{{item.Lv|lvTrans}}</td>
+                        <td>{{item.stuUid}}</td>
+                        <td>{{item.stuName}}</td>
+                        <td>{{claName}}</td>
+                        <td>{{graName}}</td>
+                        <td>{{item.stuLevel|lvTrans}}</td>
                         <td>
                             <button @click.prevent="changeId(i)" class="btn btn-warning" data-toggle="modal" data-target="#kickStu">踢出小组</button>&nbsp;
                             <button @click.prevent="changeId(i)" type="button" class="btn btn-success" data-toggle="modal" data-target="#stuPwd">查看密匙</button>
@@ -44,14 +40,14 @@
                     </tr>
                 </tbody>
             </table>
-            <div class="btn-group btnCount" role="group" aria-label="...">
-                <button v-if="pno-1>0" type="button" class="btn btn-info">上一页</button>
-                <button v-if="pno-2>0" type="button" class="btn btn-info">{{pno-2}}</button>
-                <button v-if="pno-1>0" type="button" class="btn btn-info">{{pno-1}}</button>
-                <button type="button" class="btn btn-info active">{{pno}}</button>
-                <button v-if="pno+1<=pageCount" type="button" class="btn btn-info">{{pno+1}}</button>
-                <button v-if="pno+2<=pageCount" type="button" class="btn btn-info">{{pno+2}}</button>
-                <button v-if="pno+1<=pageCount" type="button" class="btn btn-info">下一页</button>
+            <div class="btn-group btnCount" role="group">
+                <button v-if="pno-1>0" @click.prevent="LoadGroup(pno-1)" type="button" class="btn btn-info">上一页</button>
+                <button v-if="pno-2>0" @click.prevent="LoadGroup(pno-2)" type="button" class="btn btn-info">{{pno-2}}</button>
+                <button v-if="pno-1>0" @click.prevent="LoadGroup(pno-1)" type="button" class="btn btn-info">{{pno-1}}</button>
+                <button type="button"  @click.prevent="LoadGroup(pno)" class="btn btn-info active">{{pno}}</button>
+                <button v-if="pno+1<=count" @click.prevent="LoadGroup(pno+1)" type="button" class="btn btn-info">{{pno+1}}</button>
+                <button v-if="pno+2<=count" @click.prevent="LoadGroup(pno+2)" type="button" class="btn btn-info">{{pno+2}}</button>
+                <button v-if="pno+1<=count" @click.prevent="LoadGroup(pno+1)" type="button" class="btn btn-info">下一页</button>
             </div>
 
             <!-- 查看个人密匙模态框 -->
@@ -136,27 +132,120 @@
     export default {
         data(){
             return{
+                graName:null,
+                claName:null,
+                group:null,
+                cName:null,
                 index:0,
-                pageCount:10,
-                pno:2,
-                stu:[
-                    {sid:"01",sname:"王小妹1",Lv:"1",class:"软件171",pwd:"123a"},
-                    {sid:"02",sname:"王小妹2",Lv:"1",class:"软件171",pwd:"123b"},
-                    {sid:"03",sname:"王小妹3",Lv:"1",class:"软件171",pwd:"123c"},
-                    {sid:"04",sname:"王小妹4",Lv:"1",class:"软件171",pwd:"123d"},
-                    {sid:"06",sname:"王小妹6",Lv:"1",class:"软件171",pwd:"123e"},
-                    {sid:"05",sname:"王小妹5",Lv:"1",class:"软件171",pwd:"123f"},
-                    {sid:"07",sname:"王小妹7",Lv:"1",class:"软件171",pwd:"123g"},
-                    {sid:"08",sname:"王小妹8",Lv:"1",class:"软件171",pwd:"123h"},
-                    {sid:"09",sname:"王小妹9",Lv:"1",class:"软件171",pwd:"123i"},
-                    {sid:"10",sname:"王小妹10",Lv:"1",class:"软件171",pwd:"123j"},
-                ]
+                pageCount:10,//数据大小
+                pno:null,//数据页码
+                count:null,//总页数
+                stu:null
              }
         },
         methods:{
             changeId(i){
                 this.index = i;
+            },
+            groupChange(){
+                let claName =""
+                if($("#stuClass option:selected").length>0){
+                    claName = $("#stuClass option:selected")[0].value;
+                }
+                let cid = sessionStorage.getItem('cid');
+                let uid = sessionStorage.getItem('uid');
+                let level = sessionStorage.getItem('lve');
+                let pageCount = this.pageCount;      
+                let arr = {
+                    showGroup:"Y",
+                    updateGroup:"Y",
+                    claName,
+                    uid,
+                    level,
+                    cid,
+                    pageCount,
+                    do:"ShowStudent"
+                }
+                 console.log("我发送：")
+                console.log(arr);
+                let url = "http://176.128.18.86/SchoolOnline/";
+                let urlback = "Php/admin.php";
+                $.ajax({
+                    type: "post",
+                    url: url+urlback,
+                    data: arr,
+                    dataType: "json",
+                    async:false
+                }).then((result) => {
+                    console.log("我接收：")
+                    console.log(result);
+                    if(result["talk"]=="NotGroup"){
+                        alert("没有相关数据");
+                          this.group = "";
+                    }
+                    else{
+                        this.group = result["group"];
+                        // console.log(this.count);
+                    }
+                });
+            },
+            LoadGroup(pno){
+                let claName =""
+                 if($("#stuClass option:selected").length>0){
+                    claName = $("#stuClass option:selected")[0].value;
+                }
+                let stuGroup =""
+                if($("#stuGroup option:selected").length>0){
+                    stuGroup = $("#stuGroup option:selected")[0].value;
+                }
+                let cid = sessionStorage.getItem('cid');
+                let uid = sessionStorage.getItem('uid');
+                let level = sessionStorage.getItem('lve');
+                let pageCount = this.pageCount;      
+                let arr = {
+                    showGroup:"Y",
+                    claName,
+                    stuGroup,
+                    uid,
+                    level,
+                    cid,
+                    pageCount,
+                    pno,
+                    do:"ShowStudent"
+                }
+                console.log("我发送：")
+                console.log(arr);
+                let url = "http://176.128.18.86/SchoolOnline/";
+                let urlback = "Php/admin.php";
+                $.ajax({
+                    type: "post",
+                    url: url+urlback,
+                    data: arr,
+                    dataType: "json",
+                    async:false
+                }).then((result) => {
+                    console.log("我接收：")
+                    console.log(result);
+                    if(result["talk"]=="NotGroup"){
+                        alert("没有相关数据");
+                    }
+                    else{
+                        this.stu = result["student"];
+                        this.count = Math.ceil(result["howNum"]);
+                        console.log(this.count);
+                        this.pno = parseInt(result["pno"]);
+                        console.log(this.pno);
+                        this.cName = result["class"];
+                        this.group = result["group"];
+                        this.claName = result["classOne"];
+                        this.graName = result["groupOne"];
+                        // console.log(this.count);
+                    }
+                }); 
             }
-        }        
+        },
+        beforeMount() {
+            this.LoadGroup(1); 
+        }     
     }
 </script>
