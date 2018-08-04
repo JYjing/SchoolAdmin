@@ -35,6 +35,7 @@
                         <th>班级</th>
                         <th>课程</th>
                         <th>视频链接</th>
+                        <th>文件</th>
                         <th>操作</th>
                     </tr>
                 </thead>
@@ -43,83 +44,13 @@
                         <td>软件171</td>
                         <td>课程1</td>
                         <td>www.baidu.com</td>
+                        <td>src.rar</td>
                         <td class="btnModal">
-                            <button @click.prevent="ChangeIndex(i)" class="btn btn-danger" data-toggle="modal" data-target="#myModal1">删除</button>&nbsp;
+                            <button @click.prevent="ChangeIndex(i)" class="btn btn-danger" data-toggle="modal" data-target="#myModal1">删除课程</button>&nbsp;
+                            <button v-if="cour" @click.prevent="ChangeIndex(i)" class="btn btn-danger" data-toggle="modal" data-target="#myModal1">删除文件</button>
+                            <button v-else @click.prevent="ChangeIndex(i)" class="btn btn-success" data-toggle="modal" data-target="#myModal1">上传文件</button>
                         </td>
                     </tr>
-                    <tr>
-                        <td>软件171</td>
-                        <td>课程1</td>
-                        <td>www.baidu.com</td>
-                        <td class="btnModal">
-                            <button @click.prevent="ChangeIndex(i)" class="btn btn-danger" data-toggle="modal" data-target="#myModal1">删除</button>&nbsp;
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>软件171</td>
-                        <td>课程1</td>
-                        <td>www.baidu.com</td>
-                        <td class="btnModal">
-                            <button @click.prevent="ChangeIndex(i)" class="btn btn-danger" data-toggle="modal" data-target="#myModal1">删除</button>&nbsp;
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>软件171</td>
-                        <td>课程1</td>
-                        <td>www.baidu.com</td>
-                        <td class="btnModal">
-                            <button @click.prevent="ChangeIndex(i)" class="btn btn-danger" data-toggle="modal" data-target="#myModal1">删除</button>&nbsp;
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>软件171</td>
-                        <td>课程1</td>
-                        <td>www.baidu.com</td>
-                        <td class="btnModal">
-                            <button @click.prevent="ChangeIndex(i)" class="btn btn-danger" data-toggle="modal" data-target="#myModal1">删除</button>&nbsp;
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>软件171</td>
-                        <td>课程1</td>
-                        <td>www.baidu.com</td>
-                        <td class="btnModal">
-                            <button @click.prevent="ChangeIndex(i)" class="btn btn-danger" data-toggle="modal" data-target="#myModal1">删除</button>&nbsp;
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>软件171</td>
-                        <td>课程1</td>
-                        <td>www.baidu.com</td>
-                        <td class="btnModal">
-                            <button @click.prevent="ChangeIndex(i)" class="btn btn-danger" data-toggle="modal" data-target="#myModal1">删除</button>&nbsp;
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>软件171</td>
-                        <td>课程1</td>
-                        <td>www.baidu.com</td>
-                        <td class="btnModal">
-                            <button @click.prevent="ChangeIndex(i)" class="btn btn-danger" data-toggle="modal" data-target="#myModal1">删除</button>&nbsp;
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>软件171</td>
-                        <td>课程1</td>
-                        <td>www.baidu.com</td>
-                        <td class="btnModal">
-                            <button @click.prevent="ChangeIndex(i)" class="btn btn-danger" data-toggle="modal" data-target="#myModal1">删除</button>&nbsp;
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>软件171</td>
-                        <td>课程1</td>
-                        <td>www.baidu.com</td>
-                        <td class="btnModal">
-                            <button @click.prevent="ChangeIndex(i)" class="btn btn-danger" data-toggle="modal" data-target="#myModal1">删除</button>&nbsp;
-                        </td>
-                    </tr>
-
                 </tbody>
             </table>
         </div>
@@ -132,6 +63,7 @@
     export default {
         data(){
             return{
+                cour:true,
                 index:0,
                 pageCount:10,
                 pno:2

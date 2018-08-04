@@ -7,11 +7,11 @@
                     <option  v-for="(item, index) in cName" :key="index" :value="item.name">{{item.name}}</option>
                 </select>
                 <label for="stuGroup">小组</label>
-                <select id="stuGroup">
-                    <option v-for="(item, index) in group" :key="index" :value="item.name">{{item.name}}</option>
+                <select  id="stuGroup">
+                    <option v-for="(item, index) in group" :data-gid="item.gid" :key="index" :value="item.name">{{item.name}}</option>
                 </select>
                 <button class="btn btn-info" @click.prevent="LoadGroup(1)" >查看小组成员</button>
-                <button class="btn btn-info" data-toggle="modal" data-target="#seeGrouppwd">查看小组密匙</button>
+                <button class="btn btn-info" @click.prevent="CheckGroupPwd()" data-toggle="modal" data-target="#seeGrouppwd">查看小组密匙</button>
                 <button class="btn btn-danger" data-toggle="modal" data-target="#deleGroup">删除小组</button>
            </div>
             <hr>
@@ -34,8 +34,7 @@
                         <td>{{graName}}</td>
                         <td>{{item.stuLevel|lvTrans}}</td>
                         <td>
-                            <button @click.prevent="changeId(i)" class="btn btn-warning" data-toggle="modal" data-target="#kickStu">踢出小组</button>&nbsp;
-                            <button @click.prevent="changeId(i)" type="button" class="btn btn-success" data-toggle="modal" data-target="#stuPwd">查看密匙</button>
+                            <button @click.prevent="changeId(item.stuUid)" class="btn btn-warning" data-toggle="modal" data-target="#kickStu">踢出小组</button>&nbsp;
                         </td>
                     </tr>
                 </tbody>
@@ -49,25 +48,6 @@
                 <button v-if="pno+2<=count" @click.prevent="LoadGroup(pno+2)" type="button" class="btn btn-info">{{pno+2}}</button>
                 <button v-if="pno+1<=count" @click.prevent="LoadGroup(pno+1)" type="button" class="btn btn-info">下一页</button>
             </div>
-
-            <!-- 查看个人密匙模态框 -->
-            <div class="modal fade" id="stuPwd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-               <div class="modal-dialog" role="document">
-                   <div class="modal-content">
-                       <div class="modal-header">
-                         <h3 class="modal-title" id="myModalLabel">查看密匙</h3>
-                        </div>
-                        <div class="modal-body">
-                            <h3>{{stu[index].sname}}</h3>
-                            <hr>
-                            <p>密码：<input disabled="disabled" type="text" :value="stu[index].pwd"></p>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                        </div>
-                   </div>
-               </div>
-           </div>
            <!-- 踢出成员模态框 -->
             <div class="modal fade" id="kickStu" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                <div class="modal-dialog" role="document">
@@ -76,11 +56,11 @@
                          <h3 class="modal-title" id="myModalLabel">警告</h3>
                         </div>
                         <div class="modal-body">
-                            <h3>确定要将编号为"{{stu[index].sid}}"的"{{stu[index].sname}}"学员踢出本小组么？</h3>
+                            <h3>确定要将编号为"{{stu[index].stuUid}}"的"{{stu[index].stuName}}"学员踢出本小组么？</h3>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                            <button type="button" class="btn btn-danger">确定踢出</button>
+                            <button type="button" @click.prevent="kickOutGroup" class="btn btn-danger">确定踢出</button>
                         </div>
                    </div>
                </div>
@@ -97,7 +77,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                            <button type="button" class="btn btn-danger">确定删除</button>
+                            <button type="button" @click.prevent="deleGroup()" class="btn btn-danger">确定删除</button>
                         </div>
                    </div>
                </div>
@@ -110,9 +90,9 @@
                          <h3 class="modal-title" id="myModalLabel">查看密匙</h3>
                         </div>
                         <div class="modal-body">
-                            <h3>第三组</h3>
+                            <h3>{{gropName}}</h3>
                             <hr>
-                            <p>密码：<input disabled="disabled" type="text" :value="stu[index].pwd"></p>
+                            <p>密码：<input disabled="disabled" type="text" :value="gropkey"></p>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
@@ -132,6 +112,8 @@
     export default {
         data(){
             return{
+                gropkey:null,
+                gropName:null,
                 graName:null,
                 claName:null,
                 group:null,
@@ -146,6 +128,88 @@
         methods:{
             changeId(i){
                 this.index = i;
+            },
+            kickOutGroup(){
+                let uid = this.index;
+                let gid = $("#stuGroup option:selected").data("gid");
+                let arr={
+                    gid,
+                    uid,
+                    how:"kickOutGroup",
+                     do:"UpdateStudent",
+                }
+                console.log(arr);
+                let url = "http://176.128.18.86/SchoolOnline/";
+                let urlback = "Php/admin.php";
+                $.ajax({
+                    type: "post",
+                    url: url+urlback,
+                    data: arr,
+                    dataType: "json",
+                    // async:false
+                }).then(result=>{
+                    // console.log(result);
+                    if(result["talk"]=="Ok"){
+                        alert("已踢出该学生");
+                        $('#kickStu').modal('hide');
+                        window.location.reload();
+                    }   
+                    else{
+                        alert("该学生已不在本小组");
+                    }
+                })
+            },
+            deleGroup(){
+                let gid = $("#stuGroup option:selected").data("gid");
+                console.log(gid);
+                let url = "http://176.128.18.86/SchoolOnline/";
+                let urlback = "Php/admin.php";
+                let arr={
+                    gid,
+                    how:"deleteGroup",
+                    do:"UpdateStudent"
+                }
+                $.ajax({
+                    type: "post",
+                    url: url+urlback,
+                    data: arr,
+                    dataType: "json",
+                    // async:false
+                }).then(result=>{
+                    // console.log(result);
+                    if(result["talk"]=="Ok"){
+                        alert("已成功删除本小组");
+                        $('#deleGroup').modal('hide');
+                        window.location.reload();
+                    }   
+                    else{
+                        alert("不存在小组");
+                    }
+                })
+            },
+            CheckGroupPwd(){
+                let gid = $("#stuGroup option:selected").data("gid");
+                console.log(gid);
+                let url = "http://176.128.18.86/SchoolOnline/";
+                let urlback = "Php/admin.php";
+                let arr={
+                    gid,
+                    do:"ShowGroupKey"
+                }
+                $.ajax({
+                    type: "post",
+                    url: url+urlback,
+                    data: arr,
+                    dataType: "json",
+                    // async:false
+                }).then(result=>{
+                    console.log(result);
+                    this.gropkey = result["group"]["groupkey"];
+                    console.log(this.gropkey)
+                    this.gropName = result["group"]["name"];
+                    console.log(this.gropName)
+
+                })
             },
             groupChange(){
                 let claName =""
@@ -166,7 +230,7 @@
                     pageCount,
                     do:"ShowStudent"
                 }
-                 console.log("我发送：")
+                console.log("我发送：")
                 console.log(arr);
                 let url = "http://176.128.18.86/SchoolOnline/";
                 let urlback = "Php/admin.php";
@@ -175,7 +239,7 @@
                     url: url+urlback,
                     data: arr,
                     dataType: "json",
-                    async:false
+                    // async:false
                 }).then((result) => {
                     console.log("我接收：")
                     console.log(result);

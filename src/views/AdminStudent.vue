@@ -274,7 +274,7 @@ export default {
                 url: url+urlback,
                 data: arr,
                 dataType: "json",
-                // async:false
+                async:false
             }).then((result) => {
                 console.log("我接收：")
                 console.log(result);
@@ -302,7 +302,7 @@ export default {
                 url: url+urlback,
                 data: arr,
                 dataType: "json",
-                // async:false
+                async:false
             }).then((result) => {
                 console.log("我接收：")
                 console.log(result);
@@ -333,7 +333,7 @@ export default {
                 url: url+urlback,
                 data: arr,
                 dataType: "json",
-                // async:false
+                async:false
             }).then((result) => {
                 console.log("我接收：")
                 console.log(result);
