@@ -1,6 +1,7 @@
 <template>
     <div class="navi-top">
-        <div class="nav-flex">    
+        <div class="nav-flex">
+            <input id="color_b" type="text" class="input_cxcolor" readonly>   
             <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
             <ul id="n-top">
                 <li class="dropdown">
@@ -42,10 +43,13 @@
 </template>
 <script>
     import "../assets/css/bootstrap.css"
+    import "../assets/css/jquery.cxcolor.css"
     import '../assets/js/bootstrap.js'
     import "../assets/js/jquery-1.11.3.js"
     import "../assets/js/jquery-3.2.1.js"
     import '../assets/css/NavTop.css'
+    // import "../assets/js/jquery.cxcolor.js"
+    import "../assets/js/jquery.cxcolor.min.js"
 
     export default {
         data(){
@@ -53,6 +57,24 @@
 
             }
         },
-
+        mounted(){
+            (()=>{
+                $("#color_b").cxColor({
+                    color:"#526C87"
+                });
+                let color = $("#color_b");
+                let nav = $(".navi-top");
+                let span = $(".nav-flex span");
+                let myColor=$("#color_b").cxColor();
+                // console.log(color,nav);
+                color.bind("change",function(){
+                    console.log(myColor.color())
+                    nav.css("background",myColor.color());
+                    span.css("background",myColor.color());
+                    // myColor.hide();
+                });
+             
+            })()
+        }
     }
 </script>

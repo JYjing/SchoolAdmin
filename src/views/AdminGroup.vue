@@ -27,6 +27,9 @@
                     </tr>
                 </thead>
                 <tbody>
+                     <tr v-show="!stu">
+                        <td><img src="../assets/images/loading.gif" alt=""></td>
+                    </tr>
                     <tr v-for="(item, i) in stu" :key="i">
                         <td>{{item.stuUid}}</td>
                         <td>{{item.stuName}}</td>
@@ -39,7 +42,7 @@
                     </tr>
                 </tbody>
             </table>
-            <div class="btn-group btnCount" role="group">
+            <div v-if="stu"  class="btn-group btnCount" role="group">
                 <button v-if="pno-1>0" @click.prevent="LoadGroup(pno-1)" type="button" class="btn btn-info">上一页</button>
                 <button v-if="pno-2>0" @click.prevent="LoadGroup(pno-2)" type="button" class="btn btn-info">{{pno-2}}</button>
                 <button v-if="pno-1>0" @click.prevent="LoadGroup(pno-1)" type="button" class="btn btn-info">{{pno-1}}</button>
@@ -49,7 +52,7 @@
                 <button v-if="pno+1<=count" @click.prevent="LoadGroup(pno+1)" type="button" class="btn btn-info">下一页</button>
             </div>
            <!-- 踢出成员模态框 -->
-            <div class="modal fade" id="kickStu" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div v-if="stu" class="modal fade" id="kickStu" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                <div class="modal-dialog" role="document">
                    <div class="modal-content">
                        <div class="modal-header">
@@ -66,7 +69,7 @@
                </div>
             </div>
             <!-- 删除小组模态框 -->
-            <div class="modal fade" id="deleGroup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div v-if="stu"  class="modal fade" id="deleGroup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                <div class="modal-dialog" role="document">
                    <div class="modal-content">
                        <div class="modal-header">
@@ -83,7 +86,7 @@
                </div>
             </div>
             <!-- 查看小组密匙模态框 -->
-            <div class="modal fade" id="seeGrouppwd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div v-if="stu" class="modal fade" id="seeGrouppwd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                <div class="modal-dialog" role="document">
                    <div class="modal-content">
                        <div class="modal-header">

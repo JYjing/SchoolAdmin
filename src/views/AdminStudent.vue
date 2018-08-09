@@ -1,5 +1,6 @@
 <template>
     <div class="kick-main">
+            
            <div class="kick-search">
                 <div class="kick-input-search">
                         编号<input name="stuUid" @blur="blurColor" @focus="focusColor" type="text">
@@ -10,6 +11,7 @@
                         姓名<input name="stuName" @blur="blurColor" @focus="focusColor" type="text">
                     <button @click.prevent="FindStudent(1)" class="btn btn-info">搜索</button>
                 </div>
+                
                 <div class="kick-table">
                  <table class="table">
                         <thead>
@@ -23,6 +25,9 @@
                             </tr>
                         </thead>
                         <tbody>
+                            <tr v-show="!stu">
+                                <td><img src="../assets/images/loading.gif" alt=""></td>
+                            </tr>
                             <tr v-for="(item, i) in stu" :key="i">
                                 <td>{{item.stuUid}}</td>
                                 <td>{{item.stuName}}</td>
@@ -37,7 +42,7 @@
                             </tr>
                         </tbody>
                     </table>
-                    <div class="btn-group btnCount" role="group">
+                    <div v-show="stu" class="btn-group btnCount" role="group">
                         <button v-if="pno-1>0" @click.prevent="FindStudent(pno-1)" type="button" class="btn btn-info">上一页</button>
                         <button v-if="pno-2>0" @click.prevent="FindStudent(pno-2)" type="button" class="btn btn-info">{{pno-2}}</button>
                         <button v-if="pno-1>0" @click.prevent="FindStudent(pno-1)" type="button" class="btn btn-info">{{pno-1}}</button>
@@ -50,7 +55,7 @@
             </div>
 
             <!-- 踢出模态框 -->
-            <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div v-if="stu" class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                <div class="modal-dialog" role="document">
                    <div class="modal-content">
                        <div class="modal-header">
@@ -73,7 +78,7 @@
            </div>
 
             <!-- 提升模态框 -->
-           <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+           <div v-if="stu" class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                <div class="modal-dialog" role="document">
                    <div class="modal-content">
                        <div class="modal-header">
@@ -96,7 +101,7 @@
            </div>
 
             <!-- 撤销模态框 -->
-            <div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div v-if="stu" class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                <div class="modal-dialog" role="document">
                    <div class="modal-content">
                        <div class="modal-header">
