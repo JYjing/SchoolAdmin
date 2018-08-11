@@ -3,7 +3,7 @@
         <nav-top></nav-top>
         <div class="main-flex">
             <main-nav></main-nav>
-            <router-view></router-view>
+                <router-view></router-view>
         </div>
     </div>
 </template>
@@ -32,5 +32,4 @@
         height: 100%;
         display: flex;
     }
-
 </style>
