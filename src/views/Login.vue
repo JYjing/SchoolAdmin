@@ -57,7 +57,7 @@ export default {
             if(result["talk"]=="Ok"){
                 $(".login").animate({
                          opacity:0
-                        },500,()=>{
+                },500,()=>{
                       this.$router.push("/main");
                 });
                 sessionStorage.setItem('uid',result["use"][0]["uid"]);

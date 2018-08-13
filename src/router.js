@@ -68,32 +68,31 @@ const router = new Router({
         },
 
       ]
+    },
+    {
+      path: '**',
+      redirect: '/login',
     }
   ]
 })
 
 router.beforeEach((to,from,next)=>{
-  console.log('navigation-guards');
-  // to: Route: 即将要进入的目标 路由对象
-  // from: Route: 当前导航正要离开的路由
-  // next: Function: 一定要调用该方法来 resolve 这个钩子。执行效果依赖 next 方法的调用参数。
-
-  const nextRoute = ['main','admstudent','admgroup','admclass','uplcourse','admcourse','creclass','down'];
-  let isLogin =false;  // 是否登录
-  // 未登录状态；当路由到nextRoute指定页时，跳转至login
-  if (nextRoute.indexOf(to.name) >= 0) {  
-    if (isLogin===false) {
-      console.log('what fuck');
-      router.push({name:'login'})
+  console.log('进入守卫..'); 
+  const nextRoute = ['main','admstudent','admgroup','admclass','uplcourse','admcourse','creclass','down'];//路由名字
+  let isLogin =true;  // 是否登录
+  if(nextRoute.indexOf(to.name) >= 0) { //如果进入nextRoute中的路由
+    if (isLogin===false) { //判断是否登录
+      console.log('未登录，拦截网站');
+      next('/login')   //跳转登录界面           
+    }
+    else{
+      console.log("已登录，正常运作")
+      next();
     }
   }
-  // 已登录状态；当路由到login时，跳转至home 
-  // if (to.name === 'login') {
-  //   if (isLogin) {
-  //     router.push({ name: 'main' });
-  //   }
-  // }
-  next();
+  else{
+    next();
+  }
 });
 
 export default router;
