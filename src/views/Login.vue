@@ -63,6 +63,7 @@ export default {
                 sessionStorage.setItem('uid',result["use"][0]["uid"]);
                 sessionStorage.setItem('cid',result["use"][0]["cid"]);
                 sessionStorage.setItem('lve',result["use"][0]["level"]);
+                sessionStorage.setItem('isLogin',true);
             }
             else{
                 alert("帐号或密码错误");

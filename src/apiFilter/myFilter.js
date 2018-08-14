@@ -11,3 +11,32 @@ Vue.filter("lvTrans",function(value){
         return "教师"
     }
 })
+
+Vue.filter("dateTrans",function(value){
+    let date = new Date(value);
+    let year = date.getFullYear();
+    let month = date.getMonth()+1;
+    let day = date.getDate();
+    let newdate = `${year}-${month}-${day}`;
+    return newdate;
+})
+
+Vue.filter("videoTrans",function(value){
+    if(value==1){
+        return "腾讯视频"
+    }
+    else{
+        return "其他视频"
+    }
+})
+
+Vue.filter("fileTrans",function(value){
+    if(value==0){
+        return value
+    }
+    else{
+        let file = decodeURI(value);
+        let newfile = file.split("/");
+        return newfile[2];
+    }
+})

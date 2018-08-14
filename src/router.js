@@ -79,9 +79,8 @@ const router = new Router({
 router.beforeEach((to,from,next)=>{
   console.log('进入守卫..'); 
   const nextRoute = ['main','admstudent','admgroup','admclass','uplcourse','admcourse','creclass','down'];//路由名字
-  let isLogin =true;  // 是否登录
   if(nextRoute.indexOf(to.name) >= 0) { //如果进入nextRoute中的路由
-    if (isLogin===false) { //判断是否登录
+    if ((sessionStorage.getItem('uid'))==null) { //判断是否登录
       console.log('未登录，拦截网站');
       next('/login')   //跳转登录界面           
     }

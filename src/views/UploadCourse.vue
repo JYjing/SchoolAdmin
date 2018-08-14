@@ -54,37 +54,44 @@
                 let title = $("input[name='course_title']")[0].value;
                 let content = $("textarea[name='course_content']")[0].value;
                 let video_src = $("input[name='viedo_src']")[0].value;
-                let viedo_kind="";
+                let date = $("input[type='date']")[0].value;
+                let video_kind="";
                 // console.log($("select[name='tcourse'] option:selected")[0].value);
                 if($("select[name='tcourse'] option:selected")[0].value=="腾讯视频"){
-                    viedo_kind = 1;
+                    video_kind = 1;
                 }else{
-                    viedo_kind = 2;
+                    video_kind = 2;
                 }
-                let arr ={
-                    cid, //班级id
-                    title, //课程标题
-                    content, //标题内容
-                    video_src,  //视频链接
-                    viedo_kind, //视频链接类型
-                    do:"CreateCourse"
+                if(title==""||content==""||video_src==""||date==""||video_kind==""){
+                    alert("有空白地方，不能上传");
                 }
-                console.log(arr);
-                $.ajax({
-                    type: "post",
-                    url: url+urlback,
-                    data: arr,
-                    dataType: "json",
-                }).then(result=>{
-                    console.log(result); 
-                    if(result[talk=='Ok']){
-                        alert("上传成功");
+                else{
+                    let arr ={
+                        date,//日期
+                        cid, //班级id
+                        title, //课程标题
+                        content, //标题内容
+                        video_src,  //视频链接
+                        video_kind, //视频链接类型
+                        do:"CreateCourse"
                     }
-                    else{
-                        alert("上传失败");
-                    }
-                })
-
+                    console.log(arr);
+                    $.ajax({
+                        type: "post",
+                        url: url+urlback,
+                        data: arr,
+                        dataType: "json",
+                    }).then(result=>{
+                        console.log(result); 
+                        if(result['talk']=='Ok'){
+                            alert("上传成功");
+                            this.$router.push("admcourse");
+                        }
+                        else{
+                            alert("上传失败");
+                        }
+                    })
+                }
             }
         },
         mounted(){
