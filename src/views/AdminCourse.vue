@@ -39,13 +39,38 @@
                         <td>{{oneCourse.video_kind|videoTrans}}</td>
                         <td>{{oneCourse.task_src|fileTrans}}</td>
                         <td class="btnModal">
-                            <button @click.prevent="DeleCourse(oneCourse.couid)" class="btn btn-danger" data-toggle="modal" data-target="#myModal1">删除课程</button>&nbsp;
-                            <button v-if="cour" class="btn btn-danger" data-toggle="modal" data-target="#myModal1">删除文件</button>
-                            <button v-else  class="btn btn-success" data-toggle="modal" data-target="#myModal1">上传文件</button>
+                            <button @click.prevent="DeleCourse(oneCourse.couid)" class="btn btn-danger">删除课程</button>&nbsp;
+                            <button @click.prevent="DeleFile(oneCourse.couid)" v-if="cour" class="btn btn-danger" >删除文件</button>
+                            <button v-else  class="btn btn-success" data-toggle="modal" data-target="#UploadFile" >上传文件</button>
                         </td>
                     </tr>
                 </tbody>
             </table>
+        </div>
+        <!-- 上传文件模态框 -->
+        <div class="modal fade" id="UploadFile" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+               <div class="modal-dialog" role="document">
+                   <div class="modal-content">
+                       <div class="modal-header">
+                         <h3 class="modal-title" id="myModalLabel">上传文件</h3>
+                        </div>
+                        <div class="modal-body">
+                            <p>（只能上传单个文件，多个请压缩打包）</p>
+                            <form id="form1" enctype="multipart/form-data" method="post">
+                                <div class="row">
+                                    <input type="file" name="fileToUpload" id="fileToUpload" @change="fileSelected()"/>
+                                </div>
+                                    <div id="fileName"></div>
+                                    <div id="fileSize"></div>
+                                    <div id="fileType"></div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                            <button @click="uploadFile(oneCourse.couid)" class="btn btn-success">上传</button>
+                        </div>
+                   </div>
+            </div>
         </div>
     </div>
 </template>
@@ -65,6 +90,7 @@
         },
         methods:{
             LoginCourse(){
+                console.log("asdasd");
                 let couid = "";
                 if($("select[name='v-claCourse'] option:selected").length>0){
                     couid = $("select[name='v-claCourse'] option:selected")[0].value;
@@ -99,10 +125,99 @@
             },
             DeleCourse(value){
                 let couid = value;
-            }
+                let arr ={
+                    couid,
+                    do:"DeleteCou"
+                }
+                console.log(arr);
+                let url = "http://176.128.18.86/SchoolOnline/";
+                let urlback = "Php/admin.php";
+                $.ajax({
+                    type: "post",
+                    url: url+urlback,
+                    data: arr,
+                    dataType: "json",
+                }).then(result=>{
+                    console.log(result);
+                    if(result["talk"]=="Ok"){
+                        alert("删除成功");
+                        window.location.reload();
+                    }
+                    else{
+                        alert("删除失败");
+                    }
+                })
+            },
+            DeleFile(value){
+                let couid = value;
+                let arr ={
+                    couid,
+                    do:"DeleteWork"
+                }
+                console.log(arr);
+                let url = "http://176.128.18.86/SchoolOnline/";
+                let urlback = "Php/admin.php";
+                $.ajax({
+                    type: "post",
+                    url: url+urlback,
+                    data: arr,
+                    dataType: "json",
+                }).then(result=>{
+                    console.log(result);
+                    if(result["talk"]=="Ok"){
+                        alert("删除成功");
+                        window.location.reload();
+                    }
+                    else{
+                        alert("删除失败");
+                    }
+                })
+            },
+            fileSelected() {
+                var file = document.getElementById('fileToUpload').files[0];
+                if((Math.round(file.size * 100 / (1024 * 1024)) / 100).toString()>2){
+                    alert("文件大于2M,不能上传");
+                    return
+                }      
+                console.log(file.size)
+                if (file) {
+                    var fileSize = 0;
+                    if (file.size > 1024 * 1024)
+                    fileSize = (Math.round(file.size * 100 / (1024 * 1024)) / 100).toString() + 'MB';
+                    else
+                    fileSize = (Math.round(file.size * 100 / 1024) / 100).toString() + 'KB';
+                    document.getElementById('fileName').innerHTML = '文件名: ' + file.name;
+                    document.getElementById('fileSize').innerHTML = '文件大小: ' + fileSize;
+                    document.getElementById('fileType').innerHTML = '文件类型: ' + file.type;
+                }
+            },
+            uploadFile(value) {
+                let url = "http://176.128.18.86/SchoolOnline/";
+                let urlback = "Php/admin.php";
+                let form = document.getElementById('form1');
+                let file = new FormData(form);
+                let cid = sessionStorage.getItem('cid');
+                let couid = value;
+                let arr = {
+                    cid,
+                    couid,
+                    file,
+                    do:"InWork"
+                }
+                console.log(arr);
+                $.ajax({
+                    type: "post",
+                    url: url+urlback,
+                    data: arr,
+                    dataType: "json",
+                }).then(result=>{
+                    console.log(result);
+                })
+            },
         },
         beforeMount() {
             this.LoginCourse();  
         } 
+     
     }
 </script>

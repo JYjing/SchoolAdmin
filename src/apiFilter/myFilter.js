@@ -32,7 +32,7 @@ Vue.filter("videoTrans",function(value){
 
 Vue.filter("fileTrans",function(value){
     if(value==0){
-        return value
+        return "无文件"
     }
     else{
         let file = decodeURI(value);
