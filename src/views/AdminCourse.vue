@@ -28,17 +28,17 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-show="!oneCourse">
-                        <td><img src="../assets/images/loading.gif" alt=""></td>
+                    <tr v-if="!oneCourse">
+                        <td>没有任何数据</td>
                     </tr>
-                    <tr>    
-                        <td>{{claName.name}}</td>
-                        <td>{{oneCourse.title}}</td>
-                        <td>{{oneCourse.date|dateTrans}}</td>
-                        <td style="max-width: 300px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap">{{oneCourse.video_src}}</td>
-                        <td>{{oneCourse.video_kind|videoTrans}}</td>
-                        <td>{{oneCourse.task_src|fileTrans}}</td>
-                        <td class="btnModal">
+                    <tr v-else>    
+                        <td style="width:127px">{{claName.name}}</td>
+                        <td style="width:305px">{{oneCourse.title}}</td>
+                        <td style="width:120px">{{oneCourse.date|dateTrans}}</td>
+                        <td style="width:462px; max-width: 300px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap">{{oneCourse.video_src}}</td>
+                        <td style="width:111px">{{oneCourse.video_kind|videoTrans}}</td>
+                        <td style="width:146px">{{oneCourse.task_src|fileTrans}}</td>
+                        <td style="width:292px" class="btnModal">
                             <button @click.prevent="DeleCourse(oneCourse.couid)" class="btn btn-danger">删除课程</button>&nbsp;
                             <button @click.prevent="DeleFile(oneCourse.couid)" v-if="cour" class="btn btn-danger" >删除文件</button>
                             <button v-else  class="btn btn-success" data-toggle="modal" data-target="#UploadFile" >上传文件</button>
@@ -56,14 +56,15 @@
                         </div>
                         <div class="modal-body">
                             <p>（只能上传单个文件，多个请压缩打包）</p>
-                            <form id="form1" enctype="multipart/form-data" method="post">
+                            
                                 <div class="row">
-                                    <input type="file" name="fileToUpload" id="fileToUpload" @change="fileSelected()"/>
+                                    <a href="javascript:;" class="ui-upload">
+                                        <input type="file" name="fileToUpload" id="fileToUpload" @change="fileSelected()"/>上传文件
+                                    </a>
                                 </div>
                                     <div id="fileName"></div>
                                     <div id="fileSize"></div>
                                     <div id="fileType"></div>
-                            </form>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
@@ -90,7 +91,6 @@
         },
         methods:{
             LoginCourse(){
-                console.log("asdasd");
                 let couid = "";
                 if($("select[name='v-claCourse'] option:selected").length>0){
                     couid = $("select[name='v-claCourse'] option:selected")[0].value;
@@ -188,30 +188,37 @@
                     fileSize = (Math.round(file.size * 100 / 1024) / 100).toString() + 'KB';
                     document.getElementById('fileName').innerHTML = '文件名: ' + file.name;
                     document.getElementById('fileSize').innerHTML = '文件大小: ' + fileSize;
-                    document.getElementById('fileType').innerHTML = '文件类型: ' + file.type;
                 }
             },
             uploadFile(value) {
                 let url = "http://176.128.18.86/SchoolOnline/";
                 let urlback = "Php/admin.php";
-                let form = document.getElementById('form1');
-                let file = new FormData(form);
+                // let form = document.getElementById('form1');
                 let cid = sessionStorage.getItem('cid');
                 let couid = value;
-                let arr = {
-                    cid,
-                    couid,
-                    file,
-                    do:"InWork"
-                }
-                console.log(arr);
+                let file = document.getElementById("fileToUpload").files[0];
+                let form = new FormData();
+                form.append('cid',cid)
+                form.append('couid',couid)
+                form.append('file',file)
+                form.append('do',"InWork")
+                console.log(form);
                 $.ajax({
                     type: "post",
                     url: url+urlback,
-                    data: arr,
+                    data: form,
+                    processData:false,
+                    contentType: false,
                     dataType: "json",
                 }).then(result=>{
                     console.log(result);
+                    if(result["talk"]=="Ok"){
+                        alert("上传成功")
+                        window.location.reload();
+                    }
+                    else{
+                        alert("上传失败")
+                    }
                 })
             },
         },
@@ -221,3 +228,34 @@
      
     }
 </script>
+<style>
+    a:hover{
+        text-decoration: none;
+    }
+
+    .ui-upload {
+      font-size: 14px;
+      width: 80px;
+      height: 30px;
+      line-height: 30px;
+      text-align: center;
+      position: relative;
+      cursor: pointer;
+      color: #fff;
+      background: #00abff;
+      border-radius: 3px;
+      overflow: hidden;
+      display: inline-block;
+      text-decoration: none;
+      left: 15px;
+    }
+    .ui-upload input {
+      position: absolute;
+      font-size: 100px;
+      right: 0;
+      top: 0;
+      opacity: 0;
+      filter: alpha(opacity=0);
+      cursor: pointer
+    }
+</style>

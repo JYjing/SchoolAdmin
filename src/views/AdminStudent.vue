@@ -25,10 +25,10 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-show="!stu">
-                                <td><img src="../assets/images/loading.gif" alt=""></td>
+                            <tr v-if="!stu">
+                                <td>没有相关数据</td>
                             </tr>
-                            <tr v-for="(item, i) in stu" :key="i">
+                            <tr v-else v-for="(item, i) in stu" :key="i">
                                 <td>{{item.stuUid}}</td>
                                 <td>{{item.stuName}}</td>
                                 <td>{{claName}}</td>
@@ -249,7 +249,7 @@ export default {
                 console.log("我接收：")
                 console.log(result);
                 if(result["talk"]=="NotHave"){
-                    alert("没有相关数据");
+                    console.log("没有相关数据");
                 }
                 else{
                     this.stu = result["student"];

@@ -27,10 +27,10 @@
                     </tr>
                 </thead>
                 <tbody>
-                     <tr v-show="!stu">
-                        <td><img src="../assets/images/loading.gif" alt=""></td>
+                    <tr v-if="!stu">
+                        <td>没有任何数据</td>
                     </tr>
-                    <tr v-for="(item, i) in stu" :key="i">
+                    <tr v-else v-for="(item, i) in stu" :key="i">
                         <td>{{item.stuUid}}</td>
                         <td>{{item.stuName}}</td>
                         <td>{{claName}}</td>

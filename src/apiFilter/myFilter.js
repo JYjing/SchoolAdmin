@@ -35,7 +35,7 @@ Vue.filter("fileTrans",function(value){
         return "无文件"
     }
     else{
-        let file = decodeURI(value);
+        let file = decodeURIComponent(value);
         let newfile = file.split("/");
         return newfile[2];
     }
