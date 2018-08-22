@@ -127,7 +127,7 @@
 <script>
 import "../assets/css/AdminStudent.css";
 import "../assets/css/bootstrap.css";
-import "../apiFilter/myFilter.js"
+import "../apiFilter/myFilter.js" 
 
 export default {
     data(){
@@ -271,6 +271,7 @@ export default {
                 how:"kickOut",
                 do:"UpdateStudent"
             };
+            
             console.log(arr);
             let url = "http://176.128.18.86/SchoolOnline/";
             let urlback = "Php/admin.php";
