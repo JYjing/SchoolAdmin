@@ -40,7 +40,7 @@
                         <td>{{item.task_id}}</td>
                         <td>{{item.name}}</td>
                         <td>{{courName.title}}</td>
-                        <td><button class="btn btn-success" @click.prevent="downWork(item.task_url)">下载</button></td>
+                        <td><button class="btn btn-success" @click.prevent="downWork(item.task_id)">下载</button></td>
                     </tr>
                 </tbody>
             </table>
@@ -67,18 +67,27 @@
         },
         methods:{
             downWork(value){
-                let url = decodeURIComponent(value);
-                let ip = "http://176.128.18.86"
-                // let ip = "https://www.bigcurly.club"
-                window.open(`${ip}${this.urlwork}${url}`);
-                // var $eleForm = $("<form method='get'></form>");
+                let task_id = value;
+                let ip = "http://176.128.18.86";
+                let url = "http://176.128.18.86/SchoolOnline/";
+                let urlback = "Php/admin.php";
+                let arr = {
+                     task_id,
+                     do:"DwWork",
+                     how:"one"
+                }
+                $.ajax({
+                    type: "post",
+                    url: url+urlback,
+                    data: arr,
+                    async:false,
+                    dataType: "json"
+                }).then((result) => {
+                    console.log(result);
+                    this.zipname = result.zipname
+                })
+                window.open(ip+this.urlwork+this.zipname);
 
-                // $eleForm.attr("action",`${ip}${this.urlwork}${url}`);
-
-                // $(document.body).append($eleForm);
-
-                // //提交表单，实现下载
-                // $eleForm.submit();
             },
             LoginWork(pno){
                 let couid = "";
@@ -114,22 +123,19 @@
                 })
             },
             downAllWork(){
-                 let ip = "http://176.128.18.86";
-                 let url = "http://176.128.18.86/SchoolOnline/";
-                 let urlback = "Php/admin.php";
-                 if($("select[name='d-Course'] option:selected").length>0){
+                let ip = "http://176.128.18.86";
+                let url = "http://176.128.18.86/SchoolOnline/";
+                let urlback = "Php/admin.php";
+                let couid ;
+                if($("select[name='d-Course'] option:selected").length>0){
                     couid = $("select[name='d-Course'] option:selected")[0].value;
                 }
-                 let arr = {
+                console.log(couid)
+                let arr = {
                      couid,
                      do:"DwWork",
                      how:"all"
-                 }
-                    // axios.post(url+urlback,arr).then(response=>{     
-                    //     console.log(response.data)
-                    // }).catch(error=>{
-                    //     console.log(error)
-                    // })
+                }
                 $.ajax({
                     type: "post",
                     url: url+urlback,
@@ -139,14 +145,10 @@
                 }).then((result) => {
                     console.log(result);
                     this.zipname = result.zipname
-                    // this.course = result['course'];
-                    // this.claName = result['class'];
-                    // this.pno = result['pno'];
-                    // this.work = result['work'];
-                    // this.courName =result['claName'];
-                    // this.urlwork = result['url'];
                 })
-                 window.open(url+this.zipname);
+                window.open(ip+this.urlwork+this.zipname);
+                console.log(ip+this.urlwork+this.zipname)
+                
             }
         },
         beforeMount() {
